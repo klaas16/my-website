@@ -20,11 +20,15 @@ function App() {
             title: "Brave New World",
             desc: "Die Menschen leben in einer scheinbar utopischen Welt.",
             image: "/bookCover/bravenewworld.png",
+            author: "Aldous Huxley",
+            genre: "Novel"
         },
         {
             title: "Steppenwolf",
             desc: "Ein Mann auf der Suche nach sich selbst.",
             image: "/bookCover/steppenwolf.png",
+            author: "Herman Hesse",
+            genre: "Novel"
         }
     ]
 
@@ -42,7 +46,6 @@ function App() {
                     onClick={() => setBook(book)}
                     key={book.title}
                     title={book.title}
-                    desc={book.desc}
                     image={book.image}
                 />
                 ))
@@ -51,18 +54,35 @@ function App() {
 
         {book && (
             <dialog className="book-dialog" ref={dialogRef}>
-                <h2>
-                    {book.title}
-                </h2>
-                <p>
-                    {book.desc}
-                </p>
-                <button onClick={() => {
-                    dialogRef.current.close()
-                    setBook(null)
+                <div className="book-dialog-content">
+                    <div className="book-dialog-text">
+                        <h2 className="book-dialog-title">
+                            {book.title}
+                        </h2>
+                        <p className="book-dialog-meta">
+                            {book.author} - {book.genre}
+                        </p>
+                        <p className="book-dialog-desc">
+                            {book.desc}
+                        </p>
+                    </div>
+                    <div className="book-dialog-side">
+                        <div className="rating">
+                            <p>Rating: 4/5</p>
+                        </div>
+                        <div className="illustration">
+                            <img className="illustration-img" src={book.image} alt={book.title} />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button className="book-dialog-close-button" aria-label="Close" onClick={() => {
+                        dialogRef.current.close()
+                        setBook(null)
                     }}>
-                    Close
-                </button>
+                        ×
+                    </button>
+                </div>
             </dialog>
         )}
 

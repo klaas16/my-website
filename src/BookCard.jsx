@@ -1,5 +1,5 @@
 
-function BookCard ({title, desc, image, onClick}) {
+function BookCard ({title, desc, image, author, genre, onClick}) {
 
     return (
         <>
@@ -10,6 +10,9 @@ function BookCard ({title, desc, image, onClick}) {
                 />
                 <div className={'title'}>
                     <p>{title}</p>
+                </div>
+                <div className={'autor-genre'}>
+                    <p>{author}, {genre}</p>
                 </div>
                 <div className={'desc'}>
                     <p>{desc}</p>
