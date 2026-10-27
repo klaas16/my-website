@@ -1,95 +1,39 @@
-import './App.css'
-import {useState, useRef, useEffect} from "react";
-import Greeting from './Greeting.jsx'
-import BookCard from './BookCard.jsx'
-{/* import Counter from './Counter.jsx' */}
+import { useState } from "react";
+import BookCard from "./components/BookCard.jsx";
+import BookDialog from "./components/BookDialog.jsx";
+import Greeting from "./components/Greeting.jsx";
+import books from "./data/books.js";
 
 function App() {
+    const [selectedBook, setSelectedBook] = useState(null);
 
-    const [book, setBook] = useState(null);
-    const dialogRef = useRef(null);
+    return (
+        <main className="min-h-screen bg-background p-6 text-snow sm:p-10">
+            <Greeting />
+            <p className="mt-6 max-w-2xl text-snow/80">
+                Here, I am going to write a bit about the books I read recently.
+                Let me know if you have some recommendations!
+            </p>
 
-    useEffect(() => {
-        if (book) {
-            dialogRef.current.showModal()
-        }
-    }, [book])
+            <section
+                aria-label="Books I've read"
+                className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            >
+                {books.map((book) => (
+                    <BookCard
+                        key={book.id}
+                        book={book}
+                        onClick={() => setSelectedBook(book)}
+                    />
+                ))}
+            </section>
 
-    const books = [
-        {
-            title: "Brave New World",
-            desc: "Die Menschen leben in einer scheinbar utopischen Welt.",
-            image: "/bookCover/bravenewworld.png",
-            author: "Aldous Huxley",
-            genre: "Novel"
-        },
-        {
-            title: "Steppenwolf",
-            desc: "Ein Mann auf der Suche nach sich selbst.",
-            image: "/bookCover/steppenwolf.png",
-            author: "Herman Hesse",
-            genre: "Novel"
-        }
-    ]
-
-  return (
-    <>
-      <Greeting />
-
-      <p>
-        Here, I am going to write a bit about the books I read recently. Let me know if you have some Recommendations :D
-      </p>
-
-        <div className="gallery">
-            {books.map(book => (
-                <BookCard
-                    onClick={() => setBook(book)}
-                    key={book.title}
-                    title={book.title}
-                    image={book.image}
-                />
-                ))
-            }
-        </div>
-
-        {book && (
-            <dialog className="book-dialog" ref={dialogRef}>
-                <div className="book-dialog-content">
-                    <div className="book-dialog-text">
-                        <h2 className="book-dialog-title">
-                            {book.title}
-                        </h2>
-                        <p className="book-dialog-meta">
-                            {book.author} - {book.genre}
-                        </p>
-                        <p className="book-dialog-desc">
-                            {book.desc}
-                        </p>
-                    </div>
-                    <div className="book-dialog-side">
-                        <div className="rating">
-                            <p>Rating: 4/5</p>
-                        </div>
-                        <div className="illustration">
-                            <img className="illustration-img" src={book.image} alt={book.title} />
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <button className="book-dialog-close-button" aria-label="Close" onClick={() => {
-                        dialogRef.current.close()
-                        setBook(null)
-                    }}>
-                        ×
-                    </button>
-                </div>
-            </dialog>
-        )}
-
-        {/*<Counter /> */}
-
-    </>
-  );
+            <BookDialog
+                book={selectedBook}
+                onClose={() => setSelectedBook(null)}
+            />
+        </main>
+    );
 }
 
 export default App;

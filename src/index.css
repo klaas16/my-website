@@ -1,18 +1,18 @@
-:root{
-  /* Colors: */
-  --background-color: #17191E;
-  --surface-color: #24272B;
-  --green-surface-color: #24372c;
-  --text-color-snow: #FFFAFB;
-  --text-color-green: #A3B99B;
-  --accent-color: #D6A0A8;
+@import "tailwindcss";
 
-  /* Spacings: */
-  --spacing-sm: 16px;
-  --spacing-md: 32px;
-  --spacing-lg: 48px;
+@theme {
+  --color-background: #17191e;
+  --color-surface: #24272b;
+  --color-green-surface: #24372c;
+  --color-snow: #fffafb;
+  --color-green: #a3b99b;
+  --color-accent: #d6a0a8;
 
-  /* Fonts: */
-  --font-heading: serif, serif;
-  --font-body: sans-serif, sans-serif;
+  --font-heading: serif;
+  --font-body: sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
 }
