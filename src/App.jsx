@@ -1,29 +1,23 @@
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Posts from "./pages/Posts.jsx";
+import Layout from "./components/Layout.jsx";
+import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
+import Projects from "./pages/Projects.jsx";
+
 function App() {
     return (
-        <main className="min-h-screen bg-background p-6 text-snow sm:p-10">
-            <h1 className="font-heading text-4xl text-green">
-                Yo!
-            </h1>
-            <p className="mt-4 max-w-xl text-snow/80">
-                Was geht Yannick
-            </p>
+        <BrowserRouter>
+            <Routes>
+                <Route element={<Layout />}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/posts" element={<Posts />} />
+                </Route>
 
-            {/*
-              Your previous site is saved at:
-                src/pages/BooksExample.jsx
-
-              To bring it back temporarily, replace this return with:
-                import BooksExample from "./pages/BooksExample.jsx";
-                ...
-                return <BooksExample />;
-
-              Or copy pieces from:
-                src/components/BookCard.jsx
-                src/components/BookDialog.jsx
-                src/components/Greeting.jsx
-                src/data/books.js
-            */}
-        </main>
+            </Routes>
+        </BrowserRouter>
     );
 }
 

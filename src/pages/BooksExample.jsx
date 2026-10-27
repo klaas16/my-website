@@ -4,9 +4,6 @@ import BookDialog from "../components/BookDialog.jsx";
 import Greeting from "../components/Greeting.jsx";
 import books from "../data/books.js";
 
-// Previous version of App.jsx — kept so you don't lose your work.
-// To use it again, import it in App.jsx:
-//   import BooksExample from "./pages/BooksExample.jsx";
 function BooksExample() {
     const [selectedBook, setSelectedBook] = useState(null);
 

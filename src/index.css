@@ -8,8 +8,8 @@
   --color-green: #a3b99b;
   --color-accent: #d6a0a8;
 
-  --font-heading: serif;
-  --font-body: sans-serif;
+  --font-heading: JetBrains, serif;
+  --font-body: JetBrains Mono, sans-serif;
 }
 
 body {
